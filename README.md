@@ -6,7 +6,7 @@
 Você já conhecia o Electron?
 </LINKEDIN>
 
-O Electron é uma forma de desenvolver apps desktop utilizando stack da web, com HTML, CSS, JS, ou seja, você consegue desenvolver aps desktop aproveitando conhecimentos utilizados na web.
+O Electron é uma forma de desenvolver apps desktop utilizando stack da web, com HTML, CSS, JS, ou seja, você consegue desenvolver apps desktop aproveitando conhecimentos utilizados na web.
 
 <LINKEDIN>
 Em que momento fazer a escolha de utilizar o Electron em uma aplicação que vai para produção ?
@@ -30,7 +30,7 @@ Escolher entre o Electron e escolher entre uma outra tecnologia, se você já es
 Arquitetura do Electron
 
 Cada aplicação que desenvolvemos com Electron tem as "duas pontas"
-Ela tem uma camada client-side que é uma camada visual, onde tudo que está nessa camada é acessível diretamente pelo usuário, e essa camada client-side é chamada de renderer. O processo de renderer é o processo onde vai estar a camada visual da nossa aplicação, essa camada visual funciona como um browser, ela tem acesso as mesmas APIs que browser tem, ela poder fazer as mesmas operações que um browser pode fazer, ou seja, ela funciona exatamente igual a uma aplicação frontend, ela tem as mesmas permissões e também os mesmos cuidados.
+Ela tem uma camada client-side que é uma camada visual, onde tudo que está nessa camada é acessível diretamente pelo usuário, e essa camada client-side é chamada de renderer. O processo de renderer é o processo onde vai estar a camada visual da nossa aplicação, essa camada visual funciona como um browser, ela tem acesso as mesmas APIs que browser tem, ela pode fazer as mesmas operações que um browser pode fazer, ou seja, ela funciona exatamente igual a uma aplicação frontend, ela tem as mesmas permissões e também os mesmos cuidados.
 
 Temos uma camada backend, que é chamada de main, essa camada que roda pelo server-side, é essa camada que pode ter acesso as APIs assim como o backend tem, fazer chamadas ao baco de dados, autenticação, lidar com APIs que são sensíveis e por ai vai.
 

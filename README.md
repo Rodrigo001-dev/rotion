@@ -32,7 +32,7 @@ Arquitetura do Electron
 Cada aplicação que desenvolvemos com Electron tem as "duas pontas"
 Ela tem uma camada client-side que é uma camada visual, onde tudo que está nessa camada é acessível diretamente pelo usuário, e essa camada client-side é chamada de renderer. O processo de renderer é o processo onde vai estar a camada visual da nossa aplicação, essa camada visual funciona como um browser, ela tem acesso as mesmas APIs que browser tem, ela pode fazer as mesmas operações que um browser pode fazer, ou seja, ela funciona exatamente igual a uma aplicação frontend, ela tem as mesmas permissões e também os mesmos cuidados.
 
-Temos uma camada backend, que é chamada de main, essa camada que roda pelo server-side, é essa camada que pode ter acesso as APIs assim como o backend tem, fazer chamadas ao baco de dados, autenticação, lidar com APIs que são sensíveis e por ai vai.
+Temos uma camada backend, que é chamada de main, essa camada que roda pelo server-side, é essa camada que pode ter acesso as APIs assim como o backend tem, fazer chamadas ao banco de dados, autenticação, lidar com APIs que são sensíveis e por ai vai.
 
 E nós precisamos de alguma forma comunicar essas duas camadas, e aí o Electron tem uma forma que é chamada de Inter Process Communication(IPC), o IPC é basicamente uma API(biblioteca de funções) para poder ser possível enviar mensagens, comunicar mensagens entre a camada client-side(renderer) e a camada server-side(main), ou seja, você consegue assim como você faz em uma aplicação web tradicional, que temos chamadas HTTP enviando de um frontend para o backend, nós temos também no Electron uma comunicação que usa esse padrão de IPC que nada mais é do que envia uma mensagem, recebe a mensagem, devolve uma resposta.
 

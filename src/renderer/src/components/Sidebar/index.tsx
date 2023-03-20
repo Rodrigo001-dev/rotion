@@ -11,8 +11,10 @@ import { Search } from "./Search";
 export function Sidebar() {
   const isMacOS = process.platform === "darwin";
 
-  const { data } = useQuery(["documents"], () => {
-    return window.api.fetchDocuments();
+  const { data } = useQuery(["documents"], async () => {
+    const response = await window.api.fetchDocuments();
+
+    return response.data;
   });
 
   return (

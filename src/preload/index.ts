@@ -1,22 +1,38 @@
-import { contextBridge } from 'electron'
-import { electronAPI } from '@electron-toolkit/preload'
+// o preload tem um papel muito importante de expor para o processo renderer as
+// possíveis comunicações que podemos ter entre renderer e main, ou seja, toda
+// possível comunicação precisa estar declarada dentro desse arquivo
+
+import { contextBridge, ipcRenderer } from "electron";
+import { electronAPI, ElectronAPI } from "@electron-toolkit/preload";
+
+declare global {
+  export interface Window {
+    electron: ElectronAPI;
+    api: typeof api;
+  }
+}
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  fetchDocuments(params: any) {
+    return ipcRenderer.send("fetch-documents", params);
+  },
+};
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
 if (process.contextIsolated) {
   try {
-    contextBridge.exposeInMainWorld('electron', electronAPI)
-    contextBridge.exposeInMainWorld('api', api)
+    // exposeInMainWorld expõe alguma funcionalidade, algum método, alguma função
+    // para dentro do processo do renderer, ou seja, a partir do momento que eu
+    // tenho o contextBridge.exposeInMainWorld("api", api) eu vou ter algum método
+    // server-side, disponível no processo renderer
+    contextBridge.exposeInMainWorld("electron", electronAPI);
+    contextBridge.exposeInMainWorld("api", api);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 } else {
   // @ts-ignore (define in dts)
-  window.electron = electronAPI
+  window.electron = electronAPI;
   // @ts-ignore (define in dts)
-  window.api = api
+  window.api = api;
 }

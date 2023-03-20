@@ -1,10 +1,11 @@
 import { app, shell, BrowserWindow } from "electron";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { createFileRoute, createURLRoute } from "electron-router-dom";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 
-import "./ipc";
 import icon from "../../build/icon.png";
+import "./ipc";
+import "./store";
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({

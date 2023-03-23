@@ -72,7 +72,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
 
           <div className="inline-flex region-no-drag">
             <button
-              onClick={() => deleteDocument}
+              onClick={() => deleteDocument()}
               disabled={isDeletingDocument}
               className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50 disabled:opacity-60"
             >

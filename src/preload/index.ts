@@ -3,7 +3,6 @@
 // possível comunicação precisa estar declarada dentro desse arquivo
 
 import { contextBridge, ipcRenderer } from "electron";
-import { electronAPI, ElectronAPI } from "@electron-toolkit/preload";
 
 import { IPC } from "@shared/constants/ipc";
 import {
@@ -17,7 +16,6 @@ import {
 
 declare global {
   export interface Window {
-    electron: ElectronAPI;
     api: typeof api;
   }
 }
@@ -43,6 +41,14 @@ const api = {
   deleteDocument(req: DeleteDocumentRequest): Promise<void> {
     return ipcRenderer.invoke(IPC.DOCUMENTS.DELETE, req);
   },
+
+  onNewDocumentRequest(callback: () => void) {
+    ipcRenderer.on("new-document", callback);
+
+    return () => {
+      ipcRenderer.off("new-document", callback);
+    };
+  },
 };
 
 if (process.contextIsolated) {
@@ -51,14 +57,11 @@ if (process.contextIsolated) {
     // para dentro do processo do renderer, ou seja, a partir do momento que eu
     // tenho o contextBridge.exposeInMainWorld("api", api) eu vou ter algum método
     // server-side, disponível no processo renderer
-    contextBridge.exposeInMainWorld("electron", electronAPI);
     contextBridge.exposeInMainWorld("api", api);
   } catch (error) {
     console.error(error);
   }
 } else {
-  // @ts-ignore (define in dts)
-  window.electron = electronAPI;
   // @ts-ignore (define in dts)
   window.api = api;
 }

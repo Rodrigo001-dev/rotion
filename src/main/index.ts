@@ -3,10 +3,10 @@ import { join } from "node:path";
 import { createFileRoute, createURLRoute } from "electron-router-dom";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 
+import { createTray } from "./tray";
 import icon from "../../build/icon.png";
 import "./ipc";
 import "./store";
-import "./tray";
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -26,6 +26,8 @@ function createWindow(): void {
       sandbox: false,
     },
   });
+
+  createTray(mainWindow);
 
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();

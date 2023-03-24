@@ -16,7 +16,7 @@ import { store } from "./store";
 
 // essa estratégia de comunicação entre processos do electron, é totalmente
 // baseada em nomenclaturas para os eventos, cada evento precisa ter um titulo,
-// uma string quer represente aquele evento
+// uma string que represente aquele evento
 ipcMain.handle(
   IPC.DOCUMENTS.FETCH_ALL,
   async (): Promise<FetchAllDocumentsResponse> => {

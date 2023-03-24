@@ -6,6 +6,7 @@ import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import icon from "../../build/icon.png";
 import "./ipc";
 import "./store";
+import "./tray";
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({

@@ -1,4 +1,4 @@
-![gif-nextauth](https://github.com/Rodrigo001-dev/rotion/tree/main/.github/image/rotion.gif)
+![gif-rotion]([https://github.com/Rodrigo001-dev/rotion/tree/main/.github/image/rotion.gif](https://github.com/Rodrigo001-dev/rotion/blob/main/.github/image/rotion.gif))
 
 # :page_with_curl: Projeto
 

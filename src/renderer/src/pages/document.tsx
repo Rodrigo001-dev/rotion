@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router";
 
@@ -8,6 +8,8 @@ import { ToC } from "../components/ToC";
 import { Document as IPCDocument } from "@/shared/types/ipc";
 
 export function Document() {
+  const [headings, setHeadings] = useState<string[]>([]);
+
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
 
@@ -50,6 +52,15 @@ export function Document() {
     saveDocument({ title, content });
   }
 
+  useEffect(() => {
+    const getHeadings = /<h[2-6]>(.*?)<\/h[2-6]>/gi;
+    const headingsContent = data?.content
+      ?.match(getHeadings)
+      ?.map((match) => match.replace(/<\/?h\d>/g, ""));
+
+    setHeadings(headingsContent!!);
+  }, [data]);
+
   return (
     <main className="flex-1 flex py-12 px-10 gap-8">
       <aside className="hidden lg:block sticky top-0">
@@ -58,10 +69,11 @@ export function Document() {
         </span>
 
         <ToC.Root>
-          <ToC.Link>Back-end</ToC.Link>
+          <ToC.Link>{data?.title}</ToC.Link>
           <ToC.Section>
-            <ToC.Link>Banco de dados</ToC.Link>
-            <ToC.Link>Autenticação</ToC.Link>
+            {headings?.map((heading, index) => (
+              <ToC.Link key={`${data?.id} - ${index}`}>{heading}</ToC.Link>
+            ))}
           </ToC.Section>
         </ToC.Root>
       </aside>

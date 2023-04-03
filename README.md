@@ -4,15 +4,7 @@
 
 > Projeto desenvolvido no curso de apps desktop com electron da [Rocketseat](https://github.com/Rocketseat)
 
-<LINKEDIN>
-Você já conhecia o Electron?
-</LINKEDIN>
-
 O Electron é uma forma de desenvolver apps desktop utilizando stack da web, com HTML, CSS, JS, ou seja, você consegue desenvolver apps desktop aproveitando conhecimentos utilizados na web.
-
-<LINKEDIN>
-Em que momento fazer a escolha de utilizar o Electron em uma aplicação que vai para produção ?
-</LINKEDIN>
 
 Hoje existem outras alternativas além do Electron, como por exemplo o Tauri
 O Tauri é um "electron" feito em Rust que tem o mesmo intuito de você conseguir
